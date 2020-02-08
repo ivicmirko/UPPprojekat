@@ -1,0 +1,69 @@
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+
+<header>
+    <div class="container1">
+      <a routerLink="/" class="logo1">Naučna centrala</a>
+      <nav class="navbar navbar-dark bg-dark">
+        <ul>
+          <li *ngIf="!anyLogged"><a class=""routerLink="/registration">Registracija</a></li>
+          <li *ngIf="!anyLogged"><a routerLink="/login">Prijava</a></li>
+          <li *ngIf="anyLogged">{{profile.username}}</li>
+          <li *ngIf="anyLogged  && this.role=='admin'"><a routerLink="/reviewerRequests">Zahtevi za recenzenta</a></li>
+          <li><a *ngIf="anyLogged && this.role=='editor'" routerLink="/newmagazine">Dodaj novi casopis</a></li>
+          <li><a *ngIf="anyLogged && this.role=='admin'" routerLink="/newMagazinesRequests">Zahtevi za novi casopis</a></li>
+          <li><a *ngIf="anyLogged && this.role=='editor'" routerLink="/myMagazine">Moj casopis</a></li>
+          <!-- <li><a *ngIf="anyLogged && this.role=='author'" routerLink="/addNewWork">Dodaj rad</a></li>
+          <li><a *ngIf="anyLogged && this.role=='author'" routerLink="/myWorks">Moji radovi</a></li> -->
+          <!--AUTOR-->
+          <li *ngIf="anyLogged && this.role=='author'" class="nav-item dropdown">
+              <a class=" dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Radovi
+              </a>
+              <div style="background: #343a40;" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" routerLink="/addNewWork">Dodaj rad</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" routerLink="/myWorks">Objavljeni radovi</a>
+                <a class="dropdown-item" routerLink="/fixingPdfFormat">Za izmenu pdf formata</a>
+
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+            <!--UREDNIK-->
+            <li *ngIf="anyLogged && this.role=='editor'" class="nav-item dropdown">
+                <a class=" dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Radovi
+                </a>
+                <div style="background: #343a40;" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" routerLink="/arrivedWorks">Pristigli radovi</a>
+                  <a class="dropdown-item" routerLink="/checkPDFWorks">Provera PDF formata</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
+          <!-- <li *ngIf="anyLogged && !adminLogged"><a routerLink="/userreservations">Moje rezervacije</a></li>
+          <li *ngIf="anyLogged && !adminLogged"><a routerLink="/messages">Poruke</a></li>
+          <li *ngIf="anyLogged && adminLogged"><a routerLink="/admin/allusers">Korisnici</a></li>
+          <li *ngIf="anyLogged && adminLogged"><a routerLink="/admin/comments">Komentari</a></li> -->
+          <!-- <li ><a  (click)="test()">Test</a></li> -->
+          <li><a *ngIf="anyLogged" (click)="logOut()" routerLink="/">Odjavi se</a></li>
+        </ul>
+
+      </nav>
+    </div>
+    <!-- <div *ngIf="adminLogged" class="container1">
+        <a routerLink="/" class="logo1"></a>
+        <nav>
+          <ul>
+            <li *ngIf="anyLogged && adminLogged"><a routerLink="/admin/facilityType">Tip smestaja</a></li>
+            <li *ngIf="anyLogged && adminLogged"><a routerLink="/admin/category">Kategorizacija</a></li>
+            <li *ngIf="anyLogged && adminLogged"><a routerLink="/admin/facilityAS">AS smestaja</a></li>
+            <li *ngIf="anyLogged && adminLogged"><a routerLink="/admin/unitAS">AS jedinice</a></li>
+          </ul>
+        </nav>
+      </div> -->
+    
+  </header>
+  

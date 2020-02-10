@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class RetriveReviewersHandler implements JavaDelegate {
@@ -31,10 +33,8 @@ public class RetriveReviewersHandler implements JavaDelegate {
         Work work=workService.findById((workId));
         ScienceArea scienceArea=work.getScienceArea();
 
-        List<SystemUser> reviewers=new ArrayList<>();
-        //pronadji po system usera po tome da li je recenznet i da li ima oblast
-        //List<SystemUser> reviewers=systemUserService.findBy
-
+        Set<SystemUser> reviewers=new HashSet<>();
+        reviewers=this.systemUserService.findReviewersByScienceArea(scienceArea);
 
         //proveriti da li strogo manje od 2, a sta raditi ako ima 1
         if(reviewers.size()<2){

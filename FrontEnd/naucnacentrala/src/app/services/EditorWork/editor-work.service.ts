@@ -17,8 +17,30 @@ export class EditorWorkService {
   private approvePdfUrl=url+"approvePdf/";
   private needToFixPdfUrl=url+"needToFixPdf/";
   private sendCommentForPdfUrl=url+"sendCommentForPdf/";
+
+  private getWorksWithoutReviewersUrl=url+"worksWithoutReviewers"
+  private getAddWorksReviewersFormUrl=url+"getWorksReviewersForm/";
+  private addWorksReviewersFormUrl=url+"addWorksReviewersForm/";
+  private getSetReviewingTimeFormUrl=url+"getSetReviewingTimeForm/";
+  private postSetReviewingTimeFormUrl=url+"setReviewingTimeForm/";
+
+  private getReviewedWorksUrl=url+"getReviewedWorks";
+  private openReviewedWorkUrl=url+"openReviewedWork/";//processId,workId;
+  private makeDecisionUrl=url+"makeDecision/"; //processId/decision
   
   constructor(private http:HttpClient) { }
+
+  getReviewedWorks():Observable<any>{
+    return this.http.get(this.getReviewedWorksUrl);
+  }
+  
+  openReviewedWork(processId,workId):Observable<any>{
+    return this.http.get(this.openReviewedWorkUrl+processId+"/"+workId);
+  }
+
+  makeDecision(processId,decision):Observable<any>{
+    return this.http.get(this.makeDecisionUrl+processId+"/"+decision);
+  }
 
   getArrivedWorks():Observable<any>{
     return this.http.get(this.getAllArrivedWorksUrl);
@@ -56,5 +78,25 @@ export class EditorWorkService {
 
   sendPdfToFix(processId,taskId,o):Observable<any>{
     return this.http.post(this.sendCommentForPdfUrl+processId+"/"+taskId,o);
+  }
+
+  getWorksWithoutReviewers():Observable<any>{
+    return this.http.get(this.getWorksWithoutReviewersUrl);
+  }
+
+  getAddReviewersForm(processId):Observable<any>{
+    return this.http.get(this.getAddWorksReviewersFormUrl+processId);
+  }
+
+  postAddWorksReviewersForm(processId,taskId,o):Observable<any>{
+    return this.http.post(this.addWorksReviewersFormUrl+processId+"/"+taskId,o);
+  }
+
+  getSetReviewingTimeForm(processId):Observable<any>{
+    return this.http.get(this.getSetReviewingTimeFormUrl+processId);
+  }
+
+  postSetReviewingTimeForm(processId,taskId,o):Observable<any>{
+    return this.http.post(this.postSetReviewingTimeFormUrl+processId+"/"+taskId,o);
   }
 }

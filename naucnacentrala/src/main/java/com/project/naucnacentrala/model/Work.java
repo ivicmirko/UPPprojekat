@@ -54,15 +54,15 @@ public class Work {
     @JsonIgnore
     private Editor editor;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "work_reviewer",
-            joinColumns = @JoinColumn(name = "work_id"),
-            inverseJoinColumns = @JoinColumn(name = "reviewer_id"))
-    private List<SystemUser> reviewers=new ArrayList<>();
-
-//    @OneToMany(mappedBy = "systemUser")
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name = "work_reviewer",
+//            joinColumns = @JoinColumn(name = "work_id"),
+//            inverseJoinColumns = @JoinColumn(name = "reviewer_id"))
 //    private List<SystemUser> reviewers=new ArrayList<>();
+
+    @OneToMany(mappedBy = "work")
+    private List<ReviewerWork> reviewerWorks=new ArrayList<>();
 
     @OneToMany(mappedBy = "work", cascade = CascadeType.ALL)
     private List<CoAuthor> coAuthors=new ArrayList<>();
@@ -175,11 +175,20 @@ public class Work {
         this.editor = editor;
     }
 
-    public List<SystemUser> getReviewers() {
-        return reviewers;
+//    public List<SystemUser> getReviewers() {
+//        return reviewers;
+//    }
+//
+//    public void setReviewers(List<SystemUser> reviewers) {
+//        this.reviewers = reviewers;
+//    }
+
+
+    public List<ReviewerWork> getReviewerWorks() {
+        return reviewerWorks;
     }
 
-    public void setReviewers(List<SystemUser> reviewers) {
-        this.reviewers = reviewers;
+    public void setReviewerWorks(List<ReviewerWork> reviewerWorks) {
+        this.reviewerWorks = reviewerWorks;
     }
 }

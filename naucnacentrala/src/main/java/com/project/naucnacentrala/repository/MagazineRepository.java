@@ -17,4 +17,5 @@ public interface MagazineRepository extends JpaRepository<Magazine, Long> {
 
     Magazine getMagazineByMainEditor(Editor editor);
     Set<Magazine> findAllByStatus(String status);
+    Magazine findByEditorsContaining(Editor editor);
 }

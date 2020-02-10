@@ -1,5 +1,5 @@
 package com.project.naucnacentrala.model;
 
 public enum WorkStatus {
-    requested,pdfFormatChecking,approved,denied,revieweing,fix,smallChanges,bigChanges
+    requested,pdfFormatChecking,approved,denied,reviewing,fix,smallChanges,bigChanges,addReviewers,setReviewingTime,makingDecision;
 }

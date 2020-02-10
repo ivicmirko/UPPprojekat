@@ -13,6 +13,10 @@ public class ReviewerWorkKey implements Serializable {
     @Column(name="work_id")
     private Long workId;
 
+    public ReviewerWorkKey(){
+
+    }
+
     public Long getReviewerId() {
         return reviewerId;
     }

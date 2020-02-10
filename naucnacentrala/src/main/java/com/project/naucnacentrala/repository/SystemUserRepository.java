@@ -18,5 +18,7 @@ public interface SystemUserRepository extends JpaRepository <SystemUser, Long> {
 //    @Query(value="SELECT  * FROM systemuser u, user_areas usa WHERE u.id=usa.user_id and u.reviewer='yes' and usa.area_id IN :areas",nativeQuery = true)
 //    Set<SystemUser> findReviewersByScienceAreas(@Param("areas") Set<Long> areas);
     Set<SystemUser> findSystemUsersByReviewerAndScienceAreasIn(String reviewer,Set<ScienceArea> areas);
+    Set<SystemUser> findSystemUsersByReviewerAndScienceAreasContaining(String reviewer,ScienceArea area);
+
 
 }

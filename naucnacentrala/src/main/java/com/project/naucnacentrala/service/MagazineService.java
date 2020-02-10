@@ -19,5 +19,6 @@ public interface MagazineService {
     public Magazine addEditorialBoard(NewMagazineDTO magazineDTO);
     public Set<Magazine> findMagazinesByStatus(String magazines);
     public Magazine getMagazineByMainEditor(Editor editor);
+    public Magazine getMagazineByEditor(Editor editor);
 
 }

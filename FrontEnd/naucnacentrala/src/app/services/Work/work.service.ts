@@ -20,6 +20,8 @@ export class WorkService {
   private getWorkForPdfFormatFixUrl=url+"getWorkForPdfFormatFix/"
   private sendNewPdfUrl=url+"sendFixedPdfFormatFile/"
 
+  private downloadProposalPdfFileUrl=url+"downloadProposalPdfFile/"
+
 
   constructor(private http:HttpClient) { }
 
@@ -72,6 +74,10 @@ export class WorkService {
     const formData:FormData=new FormData();
     formData.append("pdfWork",pdfWork);
     return this.http.post(this.sendNewPdfUrl+processId+"/"+taskId,formData);
+  }
+
+  downloadProposalPdfFile(workId):Observable<any>{
+    return this.http.get(this.downloadProposalPdfFileUrl+workId);
   }
 
 

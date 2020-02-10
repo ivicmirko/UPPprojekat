@@ -9,7 +9,8 @@
         <ul>
           <li *ngIf="!anyLogged"><a class=""routerLink="/registration">Registracija</a></li>
           <li *ngIf="!anyLogged"><a routerLink="/login">Prijava</a></li>
-          <li *ngIf="anyLogged">{{profile.username}}</li>
+          <li><span style="color:blue" class="glyphicon glyphicon-user"></span></li>
+          <li *ngIf="anyLogged" style="color: blue">{{profile.username}}</li>
           <li *ngIf="anyLogged  && this.role=='admin'"><a routerLink="/reviewerRequests">Zahtevi za recenzenta</a></li>
           <li><a *ngIf="anyLogged && this.role=='editor'" routerLink="/newmagazine">Dodaj novi casopis</a></li>
           <li><a *ngIf="anyLogged && this.role=='admin'" routerLink="/newMagazinesRequests">Zahtevi za novi casopis</a></li>
@@ -40,9 +41,23 @@
                   <a class="dropdown-item" routerLink="/arrivedWorks">Pristigli radovi</a>
                   <a class="dropdown-item" routerLink="/checkPDFWorks">Provera PDF formata</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <a class="dropdown-item" routerLink="/addWorkReviewers">Dodela recenzenata</a>
+                  <a class="dropdown-item" routerLink="/addNewWorkReviewers">Dodela novog recenzenta</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" routerLink="/reviewedWorks">Recenzirani radovi</a>
+                  <!-- <a class="dropdown-item" href="#">Something else here</a> -->
                 </div>
               </li>
+               <!--RECENZENT-->
+            <li *ngIf="anyLogged && this.role=='reviewer'" class="nav-item dropdown">
+              <a class=" dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Radovi
+              </a>
+              <div style="background: #343a40;" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" routerLink="/reviewingWorks">Za recenziranje</a>
+                <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+              </div>
+            </li>
           <!-- <li *ngIf="anyLogged && !adminLogged"><a routerLink="/userreservations">Moje rezervacije</a></li>
           <li *ngIf="anyLogged && !adminLogged"><a routerLink="/messages">Poruke</a></li>
           <li *ngIf="anyLogged && adminLogged"><a routerLink="/admin/allusers">Korisnici</a></li>

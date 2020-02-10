@@ -1,14 +1,12 @@
 package com.project.naucnacentrala.serviceIMP;
 
-import com.project.naucnacentrala.model.Author;
-import com.project.naucnacentrala.model.Magazine;
-import com.project.naucnacentrala.model.Work;
-import com.project.naucnacentrala.model.WorkStatus;
+import com.project.naucnacentrala.model.*;
 import com.project.naucnacentrala.repository.WorkRepository;
 import com.project.naucnacentrala.service.WorkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -55,5 +53,21 @@ public class WorkServiceImp implements WorkService {
     @Override
     public List<Work> findByAuthorAndStatus(Author author, WorkStatus workStatus) {
         return this.workRepository.findAllByAuthorAndWorkStatus(author,workStatus);
+    }
+
+    @Override
+    public List<Work> findByEditorAndStatus(Editor editor, WorkStatus workStatus) {
+//        List<Work> retVal=new ArrayList<>();
+//        List<Work> temp=this.workRepository.findAllByWorkStatus(workStatus);
+//        for(Work work:temp){
+//            System.out.println("Urednik="+work.getEditor().getUsername());
+//            if(work.getEditor().getUsername().equals(editor.getUsername())){
+//                retVal.add(work);
+//            }
+//        }
+        List<Work> retVal=this.workRepository.findAllByEditorAndWorkStatus(editor,workStatus);
+        List<Work> temp=retVal;
+        System.out.println("AA="+temp.size());
+        return retVal;
     }
 }

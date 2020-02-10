@@ -12,7 +12,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
-public class NotifyDeniedTechnicalReasonsHandler implements JavaDelegate {
+public class NotifyAuthorWorkApprovedHandler implements JavaDelegate {
 
     @Autowired
     JavaMailSender javaMailSender;
@@ -21,40 +21,27 @@ public class NotifyDeniedTechnicalReasonsHandler implements JavaDelegate {
     WorkService workService;
 
     @Override
-    @SuppressWarnings("Duplicates")
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        System.out.println("USAO U ODBIJEN IZ TEHNICKIH RAZLOGA");
+        System.out.println("OBAVESTI AUTORA DA JE RAD PRIHVACEN");
         Long workId=(Long) delegateExecution.getVariable("workId");
-        Work work=new Work();
-        Author author=new Author();
+        Work work=this.workService.findById(workId);
 
-        try{
-            work=this.workService.findById(workId);
-        }catch (NullPointerException e){
-            System.out.println("Ne moze da nadje rad");
-        }
+        work.setWorkStatus(WorkStatus.approved);
+        Author author=work.getAuthor();
 
         try {
-            author=work.getAuthor();
-        }catch (NullPointerException e){
-            System.out.println("Ne moze da nadje autora");
-        }
 
-        try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(author.getEmail());
-            message.setSubject("Obavestenje o odbijanju rada!");
+            message.setSubject("Notifikacija o radu");
 
 
-            message.setText("Postovani/a "+author.getSurname() + " " + author.getName() + "\n\n" +
-                    "Vas rad "+work.getTitle()+" je odbijen iz tehnickih razloga\n "
-                    + "\n\n Vasa NaucnaCentrala");
+            message.setText("Postovani/a "+author.getSurname() + " " + author.getName() + "\nVas rad s naslovom "+work.getTitle()+" je prihvacen!"+
+                    "\n\n Vasa NaucnaCentrala");
             javaMailSender.send(message);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        work.setWorkStatus(WorkStatus.denied);
-        workService.saveWork(work);
     }
 }

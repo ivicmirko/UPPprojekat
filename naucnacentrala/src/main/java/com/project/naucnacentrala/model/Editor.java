@@ -16,7 +16,7 @@ public class Editor extends SystemUser {
     @JsonIgnore
     private Magazine magazine;
 
-    @OneToMany(mappedBy = "editor")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "editor")
     private List<Work> works=new ArrayList<>();
 
 

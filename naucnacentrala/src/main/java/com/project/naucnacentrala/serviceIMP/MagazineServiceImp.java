@@ -144,4 +144,9 @@ public class MagazineServiceImp implements MagazineService {
 	public Magazine getMagazineByMainEditor(Editor editor) {
 		return this.magazineRepository.getMagazineByMainEditor(editor);
 	}
+
+	@Override
+	public Magazine getMagazineByEditor(Editor editor) {
+		return this.magazineRepository.findByEditorsContaining(editor);
+	}
 }

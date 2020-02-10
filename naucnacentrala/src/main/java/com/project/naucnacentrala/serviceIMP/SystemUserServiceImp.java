@@ -1,5 +1,6 @@
 package com.project.naucnacentrala.serviceIMP;
 
+import com.project.naucnacentrala.model.ScienceArea;
 import com.project.naucnacentrala.model.SystemUser;
 import com.project.naucnacentrala.repository.SystemUserRepository;
 import com.project.naucnacentrala.service.SystemUserService;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class SystemUserServiceImp implements SystemUserService {
@@ -47,6 +49,11 @@ public class SystemUserServiceImp implements SystemUserService {
     }
 
     @Override
+    public Set<SystemUser> findReviewersByScienceArea(ScienceArea scienceArea) {
+        return this.systemUserRepository.findSystemUsersByReviewerAndScienceAreasContaining("yes",scienceArea);
+    }
+
+    @Override
     public SystemUser findByUsername(String username) {
         return this.systemUserRepository.findByUsername(username);
     }
@@ -54,5 +61,10 @@ public class SystemUserServiceImp implements SystemUserService {
     @Override
     public void deleteSystemUser(SystemUser systemUser) {
         this.systemUserRepository.delete(systemUser);
+    }
+
+    @Override
+    public SystemUser findOneById(Long id) {
+        return this.systemUserRepository.findOneById(id);
     }
 }

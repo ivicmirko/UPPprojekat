@@ -66,6 +66,6 @@ public class SetEditorOfScienceAreaHandler implements JavaDelegate {
             work.setEditor(magazine.getMainEditor());
         }
         workService.saveWork(work);
-        delegateExecution.setVariable("editorSA",editor.getUsername());
+        delegateExecution.setVariable("editorSA",work.getEditor().getUsername());
     }
 }

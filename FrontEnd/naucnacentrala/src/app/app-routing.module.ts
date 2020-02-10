@@ -11,6 +11,9 @@ import { AddNewWorkComponent } from './add-new-work/add-new-work.component';
 import { ArrivedWorksComponent } from './arrived-works/arrived-works.component';
 import { CheckPdfFormatComponent } from './check-pdf-format/check-pdf-format.component';
 import { FixingPdfFormatComponent } from './fixing-pdf-format/fixing-pdf-format.component';
+import { AddWorkReviewersComponent } from './add-work-reviewers/add-work-reviewers.component';
+import { ReviewingWorkComponent } from './reviewing-work/reviewing-work.component';
+import { MakingDecisionComponent } from './making-decision/making-decision.component';
 
 
 const routes: Routes = [
@@ -28,7 +31,10 @@ const routes: Routes = [
   {path: 'arrivedWorks', component:ArrivedWorksComponent},
   {path: 'checkPDFWorks', component:CheckPdfFormatComponent},
   {path: 'fixingPdfFormat', component:FixingPdfFormatComponent},
-  // {path: 'authorNotification', component:AuthorNotification}
+  {path: 'addWorkReviewers', component:AddWorkReviewersComponent},
+  {path: 'reviewingWorks', component:ReviewingWorkComponent},
+  {path: 'reviewedWorks', component:MakingDecisionComponent}
+
   // {path: 'editorNotification', component:EditorNotification}
 
 

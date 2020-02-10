@@ -19,6 +19,9 @@ import { AddNewWorkComponent } from './add-new-work/add-new-work.component';
 import { ArrivedWorksComponent } from './arrived-works/arrived-works.component';
 import { CheckPdfFormatComponent } from './check-pdf-format/check-pdf-format.component';
 import { FixingPdfFormatComponent } from './fixing-pdf-format/fixing-pdf-format.component';
+import { AddWorkReviewersComponent } from './add-work-reviewers/add-work-reviewers.component';
+import { ReviewingWorkComponent } from './reviewing-work/reviewing-work.component';
+import { MakingDecisionComponent } from './making-decision/making-decision.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { FixingPdfFormatComponent } from './fixing-pdf-format/fixing-pdf-format.
     AddNewWorkComponent,
     ArrivedWorksComponent,
     CheckPdfFormatComponent,
-    FixingPdfFormatComponent
+    FixingPdfFormatComponent,
+    AddWorkReviewersComponent,
+    ReviewingWorkComponent,
+    MakingDecisionComponent
   ],
   imports: [
     BrowserModule,

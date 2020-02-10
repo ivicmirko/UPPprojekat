@@ -34,21 +34,21 @@ public class NotifyEditorOfScienceAreaHandler implements JavaDelegate {
 
         Editor editor=work.getEditor();
 
-        try {
-
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(editor.getEmail());
-            message.setSubject("Notifikacija o novom radu");
-
-
-            message.setText("Postovani/a "+editor.getSurname() + " " + editor.getName() + "\n\n"+
-                            "Izabrani ste kao urednik naucne oblasti u radu "+work.getTitle()+", autora\n" +
-                    work.getAuthor().getSurname()+" "+work.getAuthor().getName()+"."+
-                    "\n\n Vasa NaucnaCentrala");
-            javaMailSender.send(message);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//
+//            SimpleMailMessage message = new SimpleMailMessage();
+//            message.setTo(editor.getEmail());
+//            message.setSubject("Notifikacija o novom radu");
+//
+//
+//            message.setText("Postovani/a "+editor.getSurname() + " " + editor.getName() + "\n\n"+
+//                            "Izabrani ste kao urednik naucne oblasti u radu "+work.getTitle()+", autora\n" +
+//                    work.getAuthor().getSurname()+" "+work.getAuthor().getName()+"."+
+//                    "\n\n Vasa NaucnaCentrala");
+//            javaMailSender.send(message);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 }

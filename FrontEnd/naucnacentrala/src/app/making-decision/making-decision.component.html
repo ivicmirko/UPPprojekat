@@ -48,7 +48,17 @@
                 </div>
                 <hr color="black">
 
-            </div> 
+            </div>
+            <div class="form-group col-md-12 m-2" *ngIf="showAnswer">
+                    <label></label>
+                    <br>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Odgovor autora:</label>
+                        <textarea readonly type="text" class="form-control">{{answer}}</textarea>
+                    </div>
+                    <hr color="black">
+    
+                </div>  
             <div class="col-md-12 my-2">
                 <button class="btn btn-primary mr-1" (click)="approveWork()">Prihvati rad</button>
                 <button class="btn btn-warning mr-1" (click)="smallChanges()">Male izmene</button>

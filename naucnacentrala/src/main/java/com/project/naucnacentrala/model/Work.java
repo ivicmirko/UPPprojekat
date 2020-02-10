@@ -54,6 +54,9 @@ public class Work {
     @JsonIgnore
     private Editor editor;
 
+    @Column
+    private String answer;
+
 //    @ManyToMany(cascade = CascadeType.ALL)
 //    @JoinTable(
 //            name = "work_reviewer",
@@ -183,6 +186,14 @@ public class Work {
 //        this.reviewers = reviewers;
 //    }
 
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
 
     public List<ReviewerWork> getReviewerWorks() {
         return reviewerWorks;

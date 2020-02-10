@@ -1,6 +1,7 @@
 package com.project.naucnacentrala.model;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -28,7 +29,7 @@ public class ReviewerWork {
     private String editorComment;
 
     @Column
-    private Date date;
+    private String date;
 
     @Column
     private String reccomendation;
@@ -80,11 +81,11 @@ public class ReviewerWork {
         this.editorComment = editorComment;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

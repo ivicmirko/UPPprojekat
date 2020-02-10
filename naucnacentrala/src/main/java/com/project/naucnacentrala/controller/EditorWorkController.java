@@ -3,6 +3,7 @@ package com.project.naucnacentrala.controller;
 import com.project.naucnacentrala.common.Utils;
 import com.project.naucnacentrala.dto.ArrivedWorkDTO;
 import com.project.naucnacentrala.dto.ReviewedWorkDTO;
+import com.project.naucnacentrala.dto.ReviewesWorkDTO;
 import com.project.naucnacentrala.jwt.JwtTokenProvider;
 import com.project.naucnacentrala.model.*;
 import com.project.naucnacentrala.service.*;
@@ -462,6 +463,7 @@ public class EditorWorkController {
 
     @GetMapping(path="openReviewedWork/{processId}/{workId}",
     produces = "application/json")
+    @SuppressWarnings("Duplicates")
     public @ResponseBody ResponseEntity openReviewedWork(@PathVariable String processId,@PathVariable Long workId){
 
         Work work=this.workService.findById(workId);
@@ -477,8 +479,11 @@ public class EditorWorkController {
             reviewedWorkDTO.setId(reviewerWork.getWork().getId());
             retVal.add(reviewedWorkDTO);
         }
+        ReviewesWorkDTO reviewesWorkDTO=new ReviewesWorkDTO();
+        reviewesWorkDTO.setAnswer(work.getAnswer());
+        reviewesWorkDTO.setReviewedWorkDTOS(retVal);
 
-        return new ResponseEntity(retVal,HttpStatus.OK);
+        return new ResponseEntity(reviewesWorkDTO,HttpStatus.OK);
     }
 
     @GetMapping(path="makeDecision/{processId}/{decision}",
@@ -487,7 +492,11 @@ public class EditorWorkController {
         Long workId=(Long) runtimeService.getVariable(processId,"workId");
         Work work=workService.findById(workId);
 
+        work.setWorkStatus(WorkStatus.needChages);
+        this.workService.saveWork(work);
         runtimeService.setVariable(processId,"decision",decision);
+        Task task = taskService.createTaskQuery().active().taskDefinitionKey("EditorMakesDecision").processInstanceId(processId).singleResult();
+        taskService.complete(task.getId());
 
         return new ResponseEntity(HttpStatus.OK);
     }

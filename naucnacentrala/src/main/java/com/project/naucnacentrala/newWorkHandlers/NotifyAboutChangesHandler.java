@@ -12,7 +12,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
-public class NotifyAboutSmallChangesHandler implements JavaDelegate {
+public class NotifyAboutChangesHandler implements JavaDelegate {
 
     @Autowired
     JavaMailSender javaMailSender;
@@ -22,13 +22,18 @@ public class NotifyAboutSmallChangesHandler implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        System.out.println("USAO U MALE PROMENE");
+        System.out.println("USAO U PROMENE");
         Long workId=(Long) delegateExecution.getVariable("workId");
         Work work=this.workService.findById(workId);
 
-        work.setWorkStatus(WorkStatus.smallChanges);
         Author author=work.getAuthor();
-
+        int decision=(int)delegateExecution.getVariable("decision");
+        String changes="";
+        if(decision==2){
+            changes="male";
+        }else if(decision==3){
+            changes="velike";
+        }
         try {
 
             SimpleMailMessage message = new SimpleMailMessage();
@@ -36,7 +41,7 @@ public class NotifyAboutSmallChangesHandler implements JavaDelegate {
             message.setSubject("Notifikacija o radu");
 
 
-            message.setText("Postovani/a "+author.getSurname() + " " + author.getName() + "\nVasem radu s naslovom "+work.getTitle()+" su potrebne male izmene!"+
+            message.setText("Postovani/a "+author.getSurname() + " " + author.getName() + "\nVasem radu s naslovom "+work.getTitle()+" su potrebne "+decision+" izmene!"+
                     "\n\n Vasa NaucnaCentrala");
             javaMailSender.send(message);
 

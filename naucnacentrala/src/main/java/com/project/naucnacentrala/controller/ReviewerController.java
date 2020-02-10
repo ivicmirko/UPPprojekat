@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
@@ -51,6 +52,7 @@ public class ReviewerController {
 
     @GetMapping(path = "getWorksForReviewing",
             produces = "application/json")
+    @SuppressWarnings("Duplicates")
     public @ResponseBody
     ResponseEntity getWorksForReviewing() {
 
@@ -155,7 +157,7 @@ public class ReviewerController {
                 }
             }
             reviewerWork.setReviewed(true);
-            reviewerWork.setDate(new Date());
+            reviewerWork.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date()));
             formService.submitTaskForm(task.getId(), map);
 
 

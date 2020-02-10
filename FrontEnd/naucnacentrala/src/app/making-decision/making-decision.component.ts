@@ -15,9 +15,11 @@ export class MakingDecisionComponent implements OnInit {
   private processInstance="";
   private works=[];
   private workReviews=[];
+  private answer="";
   private processId:String;
   private workId:Number;
   private title="";
+  private showAnswer=false;
 
 
   constructor(private router:Router,private editorService:EditorWorkService) { }
@@ -43,7 +45,13 @@ export class MakingDecisionComponent implements OnInit {
     this.editorService.openReviewedWork(processId,id).subscribe(
       res=>{
         console.log(res);
-        this.workReviews=res;
+        this.workReviews=res.reviewedWorkDTOS;
+        this.answer=res.answer;
+        if(this.answer == null || this.answer==""){
+          this.showAnswer=false;
+        }else{
+          this.showAnswer=true;
+        }
         this.showList=false;
       },
       error=>{

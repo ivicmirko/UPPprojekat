@@ -1,11 +1,12 @@
 package com.project.naucnacentrala.dto;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ReviewedWorkDTO {
     private Long id;
     private String authorComment;
-    private Date date;
+    private String date;
     private String editorComment;
     private String reviewer;
     private String recommendation;
@@ -30,11 +31,11 @@ public class ReviewedWorkDTO {
         this.authorComment = authorComment;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

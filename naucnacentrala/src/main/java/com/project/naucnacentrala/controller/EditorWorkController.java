@@ -488,6 +488,7 @@ public class EditorWorkController {
 
     @GetMapping(path="makeDecision/{processId}/{decision}",
     produces = "application/json")
+    @PreAuthorize("hasAuthority('editor')")
     public @ResponseBody ResponseEntity postDecision(@PathVariable String processId, @PathVariable int decision){
         Long workId=(Long) runtimeService.getVariable(processId,"workId");
         Work work=workService.findById(workId);
@@ -497,6 +498,85 @@ public class EditorWorkController {
         runtimeService.setVariable(processId,"decision",decision);
         Task task = taskService.createTaskQuery().active().taskDefinitionKey("EditorMakesDecision").processInstanceId(processId).singleResult();
         taskService.complete(task.getId());
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/getSetNewReviewerForm/{processId}/{oldUsername}",
+            produces = "application/json")
+    //@PreAuthorize("hasAuthority('editor')")
+    @SuppressWarnings("Duplicates")
+    public @ResponseBody
+    FormFieldsDto getSetNewReviewerForm(@PathVariable String processId, @PathVariable String oldUsername) {
+
+        System.out.println("Usao daj formu za novog recc");
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Long workId=(Long) runtimeService.getVariable(processId,"workId");
+        Work work=this.workService.findById(workId);
+        Magazine magazine=work.getMagazine();
+        Task task = taskService.createTaskQuery().active().taskDefinitionKey("SetNewReviewer").processInstanceId(processId).singleResult();
+        TaskFormData taskFormData = formService.getTaskFormData(task.getId());
+        List<FormField> properties = taskFormData.getFormFields();
+
+        Set<SystemUser> systemUsers = this.systemUserService.findReviewersByScienceArea(work.getScienceArea());
+        Set<ReviewerWork> reviewerWorks=this.reviewerWorkService.findAllByWork(work);
+        Set<SystemUser> retVal=this.systemUserService.findReviewersByScienceArea(work.getScienceArea());
+        for(SystemUser su:systemUsers){
+            for(ReviewerWork rw:reviewerWorks){
+                if(!su.getUsername().equals(oldUsername) && rw.getSystemUser().getUsername().equals(su.getUsername())){
+                    retVal.remove(su);
+                }
+            }
+        }
+        for (FormField element : properties) {
+            if (element.getId().equals("newrew")) {
+                for (SystemUser su : retVal) {
+                    String retString=su.getName()+" "+su.getSurname();
+                    if(magazine.getReviewes().contains(su)){
+                        retString+=" (u nasem je casopisu)";
+                    }
+                    element.getProperties().put(String.valueOf(su.getId()), retString);
+                }
+            }
+        }
+        return new FormFieldsDto(task.getId(), processId, properties);
+    }
+
+    @PostMapping(path = "/postSetNewReviewerForm/{processId}/{oldUsername}")
+    @SuppressWarnings("Duplicates")
+    public @ResponseBody ResponseEntity postSetNewReviewerForm(@PathVariable String processId,@PathVariable String oldUsername ,@RequestBody List<FormSubmissionDto> dto){
+
+        HashMap<String, Object> map = Utils.mapListToDto(dto);
+        Task task = taskService.createTaskQuery().active().taskDefinitionKey("SetNewReviewer").processInstanceId(processId).singleResult();
+        TaskFormData taskFormData = formService.getTaskFormData(task.getId());
+        Long workId=(Long) runtimeService.getVariable(processId,"workId");
+        Work work=this.workService.findById(workId);
+        String newUsername="";
+        Task task2 = taskService.createTaskQuery().taskDefinitionKey("ReviewingWork").taskAssignee(oldUsername).processInstanceId(processId).singleResult();
+        SystemUser newSystemUser=new SystemUser();
+        for(FormSubmissionDto formField:dto) {
+            if (formField.getFieldId().equals("newRew")) {
+                System.out.println("nov="+formField.getFieldValue());
+                Long newRewId=Long.parseLong(formField.getFieldValue());
+                newSystemUser=this.systemUserService.findOneById(newRewId);
+                newUsername=newSystemUser.getUsername();
+
+                SystemUser oldSystemUser=this.systemUserService.findByUsername(oldUsername);
+                for(ReviewerWork reviewerWork:this.reviewerWorkService.findAllByWork(work)){
+                    if(reviewerWork.getSystemUser().getUsername().equals(oldUsername)){
+                        reviewerWork.setSystemUser(newSystemUser);
+                        reviewerWorkService.saveReviewWork(reviewerWork);
+                    }
+                }
+            }
+        }
+        System.out.println(newUsername+"asdaddad");
+        task2.setAssignee(newUsername);
+
+        runtimeService.setVariable(processId,"newUsername",newUsername);
+
+        runtimeService.setVariable(processId,"oldUsername",oldUsername);
+        formService.submitTaskForm(task.getId(), map);
 
         return new ResponseEntity(HttpStatus.OK);
     }

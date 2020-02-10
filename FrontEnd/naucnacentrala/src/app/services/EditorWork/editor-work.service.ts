@@ -27,8 +27,19 @@ export class EditorWorkService {
   private getReviewedWorksUrl=url+"getReviewedWorks";
   private openReviewedWorkUrl=url+"openReviewedWork/";//processId,workId;
   private makeDecisionUrl=url+"makeDecision/"; //processId/decision
+
+  private postSetNewReviewerFormUrl=url+"postSetNewReviewerForm/";//processId,oldUsername;
+  private getSetNewReviewerFormUrl=url+"getSetNewReviewerForm/";//processId
   
   constructor(private http:HttpClient) { }
+
+  getSetNewReviewerForm(processId,oldUsername):Observable<any>{
+    return this.http.get(this.getSetNewReviewerFormUrl+processId+"/"+oldUsername);
+  }
+
+  postSetNewReviewerForm(oldUsername,processId,o):Observable<any>{
+    return this.http.post(this.postSetNewReviewerFormUrl+processId+"/"+oldUsername,o);
+  }
 
   getReviewedWorks():Observable<any>{
     return this.http.get(this.getReviewedWorksUrl);

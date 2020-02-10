@@ -41,7 +41,7 @@ public class NotifyAboutChangesHandler implements JavaDelegate {
             message.setSubject("Notifikacija o radu");
 
 
-            message.setText("Postovani/a "+author.getSurname() + " " + author.getName() + "\nVasem radu s naslovom "+work.getTitle()+" su potrebne "+decision+" izmene!"+
+            message.setText("Postovani/a "+author.getSurname() + " " + author.getName() + "\nVasem radu s naslovom "+work.getTitle()+" su potrebne "+changes+" izmene!"+
                     "\n\n Vasa NaucnaCentrala");
             javaMailSender.send(message);
 

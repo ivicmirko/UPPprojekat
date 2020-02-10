@@ -23,6 +23,7 @@ INSERT INTO `naucnacentrala`.`systemuser` (`id`, `city`, `country`, `email`, `is
 INSERT INTO `naucnacentrala`.`systemuser` (`id`, `city`, `country`, `email`, `is_enabled`, `is_removed`, `latitude`, `longitude`, `name`, `reviewer`, `surname`, `title`, `username`, `password`) VALUES ('7', 'beograd', 'srbija', 'ivic996@gmail.com', b'1', b'0', '25.6', '45.7', 'Mladen', 'yes', 'Mladenic', 'mr', 'mladen', '$2a$10$zxww4A8NKbMeHicT3ri9x.cxjstiwU2v7L8CI1Z3u1uVXT40LdZHm');
 INSERT INTO `naucnacentrala`.`systemuser` (`id`, `city`, `country`, `email`, `is_enabled`, `is_removed`, `latitude`, `longitude`, `name`, `reviewer`, `surname`, `title`, `username`, `password`) VALUES ('8', 'novi sad', 'srbija', 'ivic996@gmail.com', b'1', b'0', '25.6', '45.7', 'Goran', 'yes', 'Garanic', 'mr', 'goran', '$2a$10$zxww4A8NKbMeHicT3ri9x.cxjstiwU2v7L8CI1Z3u1uVXT40LdZHm');
 INSERT INTO `naucnacentrala`.`systemuser` (`id`, `city`, `country`, `email`, `is_enabled`, `is_removed`, `latitude`, `longitude`, `name`, `reviewer`, `surname`, `title`, `username`, `password`) VALUES ('9', 'nis', 'srbija', 'ivic996@gmail.com', b'1', b'0', '25.6', '45.7', 'Aleksandar', 'yes', 'Aleksandric', 'mr', 'aca', '$2a$10$zxww4A8NKbMeHicT3ri9x.cxjstiwU2v7L8CI1Z3u1uVXT40LdZHm');
+INSERT INTO `naucnacentrala`.`systemuser` (`id`, `city`, `country`, `email`, `is_enabled`, `is_removed`, `latitude`, `longitude`, `name`, `reviewer`, `surname`, `title`, `username`, `password`) VALUES ('12', 'nis', 'srbija', 'ivic996@gmail.com', b'1', b'0', '25.6', '45.7', 'Dule', 'yes', 'Dulic', 'mr', 'dule', '$2a$10$zxww4A8NKbMeHicT3ri9x.cxjstiwU2v7L8CI1Z3u1uVXT40LdZHm');
 
 --author
 INSERT INTO `naucnacentrala`.`systemuser` (`id`, `city`, `country`, `email`, `is_enabled`, `is_removed`, `latitude`, `longitude`, `name`, `reviewer`, `surname`, `title`, `username`, `password`) VALUES ('10', 'subotica', 'srbija', 'ivic996@gmail.com', b'1', b'0', '25.6', '45.7', 'Zoltan', 'no', 'Zoltany', 'mr', 'zoli', '$2a$10$zxww4A8NKbMeHicT3ri9x.cxjstiwU2v7L8CI1Z3u1uVXT40LdZHm');
@@ -43,6 +44,7 @@ INSERT INTO `naucnacentrala`.`user_authority` (user_id, authority_id) VALUES (8,
 INSERT INTO `naucnacentrala`.`user_authority` (user_id, authority_id) VALUES (9, 2);
 INSERT INTO `naucnacentrala`.`user_authority` (user_id, authority_id) VALUES (10, 4);
 INSERT INTO `naucnacentrala`.`user_authority` (user_id, authority_id) VALUES (11, 4);
+INSERT INTO `naucnacentrala`.`user_authority` (user_id, authority_id) VALUES (12, 2);
 
 --naucne oblasti
 INSERT INTO `naucnacentrala`.`user_areas` (user_id, area_id) VALUES (1, 1);
@@ -78,6 +80,8 @@ INSERT INTO `naucnacentrala`.`user_areas` (user_id, area_id) VALUES (10, 3);
 
 INSERT INTO `naucnacentrala`.`user_areas` (user_id, area_id) VALUES (11, 2);
 INSERT INTO `naucnacentrala`.`user_areas` (user_id, area_id) VALUES (11, 3);
+
+INSERT INTO `naucnacentrala`.`user_areas` (user_id, area_id) VALUES (12, 1);
 
 --editor
 INSERT INTO `naucnacentrala`.`editor` (`id`, `magazine_id`) VALUES ('2', null);

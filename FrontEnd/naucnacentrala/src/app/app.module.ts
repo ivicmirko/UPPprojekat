@@ -24,6 +24,7 @@ import { ReviewingWorkComponent } from './reviewing-work/reviewing-work.componen
 import { MakingDecisionComponent } from './making-decision/making-decision.component';
 import { FixWorkComponent } from './fix-work/fix-work.component';
 import { MyWorksComponent } from './my-works/my-works.component';
+import { SetNewReviewerComponent } from './set-new-reviewer/set-new-reviewer.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { MyWorksComponent } from './my-works/my-works.component';
     ReviewingWorkComponent,
     MakingDecisionComponent,
     FixWorkComponent,
-    MyWorksComponent
+    MyWorksComponent,
+    SetNewReviewerComponent
   ],
   imports: [
     BrowserModule,

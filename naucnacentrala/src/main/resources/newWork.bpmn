@@ -297,19 +297,14 @@
         <bpmn:incoming>SequenceFlow_0u0qniz</bpmn:incoming>
         <bpmn:outgoing>SequenceFlow_1c896cy</bpmn:outgoing>
       </bpmn:userTask>
-      <bpmn:sendTask id="SendTask_10dshya" name="Time is up. Set another reviewer" camunda:expression="com.project.naucnacentrala.newWorkHandlers.NotifyTimeIsUpHandler">
+      <bpmn:sendTask id="SendTask_10dshya" name="Time is up. Set another reviewer" camunda:class="com.project.naucnacentrala.newWorkHandlers.NotifyTimeIsUpHandler">
         <bpmn:incoming>SequenceFlow_1rjhb6d</bpmn:incoming>
         <bpmn:outgoing>SequenceFlow_1gvuihj</bpmn:outgoing>
       </bpmn:sendTask>
       <bpmn:userTask id="SetNewReviewer" name="Set new reviewer" camunda:assignee="${editorSA}">
         <bpmn:extensionElements>
           <camunda:formData>
-            <camunda:formField id="newrew" label="Postavi novog recenzenta:" type="enum">
-              <camunda:value id="peter" name="peter" />
-              <camunda:value id="mary" name="mary" />
-              <camunda:value id="john" name="john" />
-            </camunda:formField>
-            <camunda:formField id="newDate" type="date" />
+            <camunda:formField id="newrew" label="Postavi novog recenzenta:" type="enum" />
           </camunda:formData>
         </bpmn:extensionElements>
         <bpmn:incoming>SequenceFlow_1frrjhn</bpmn:incoming>
@@ -321,7 +316,7 @@
       <bpmn:boundaryEvent id="BoundaryEvent_1q07l64" attachedToRef="ReviewingWork">
         <bpmn:outgoing>SequenceFlow_1rjhb6d</bpmn:outgoing>
         <bpmn:timerEventDefinition id="TimerEventDefinition_1xgplro">
-          <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">${reviewTimeFormated}</bpmn:timeDuration>
+          <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT30S</bpmn:timeDuration>
         </bpmn:timerEventDefinition>
       </bpmn:boundaryEvent>
       <bpmn:sequenceFlow id="SequenceFlow_1rjhb6d" sourceRef="BoundaryEvent_1q07l64" targetRef="SendTask_10dshya" />

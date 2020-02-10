@@ -28,12 +28,15 @@ public class NotifyTimeIsUpHandler implements JavaDelegate {
         Editor editor=work.getEditor();
 
         Boolean revExist=(Boolean) delegateExecution.getVariable("reviewersExist");
-
+        String processId=(String) delegateExecution.getProcessInstanceId();
+        String url="http://localhost:4200/setNewReviewer/";
         String username="";
         if(revExist){
             username=(String) delegateExecution.getVariable("oneUser");
+            url=url+username+"/"+processId;
         }else{
             username="Vama";
+            url=url+editor.getUsername()+"/"+processId;
         }
 
         try {
@@ -44,6 +47,8 @@ public class NotifyTimeIsUpHandler implements JavaDelegate {
 
 
             message.setText("Postovani/a "+editor.getSurname() + " " + editor.getName() + "\nIsteklo je vreme recenziranja recenzetu: "+username+
+                    "\nMolimo da dodate novog na sledecem linku:\n"+
+                    url+
                     "\n\n Vasa NaucnaCentrala");
             javaMailSender.send(message);
 

@@ -16,6 +16,7 @@ import { ReviewingWorkComponent } from './reviewing-work/reviewing-work.componen
 import { MakingDecisionComponent } from './making-decision/making-decision.component';
 import { FixWorkComponent } from './fix-work/fix-work.component';
 import { MyWorksComponent } from './my-works/my-works.component';
+import { SetNewReviewerComponent } from './set-new-reviewer/set-new-reviewer.component';
 
 
 const routes: Routes = [
@@ -37,7 +38,11 @@ const routes: Routes = [
   {path: 'reviewingWorks', component:ReviewingWorkComponent},
   {path: 'reviewedWorks', component:MakingDecisionComponent},
   {path: 'worksForFix', component:FixWorkComponent},
-  {path: 'myWorks', component:MyWorksComponent}
+  {path: 'myWorks', component:MyWorksComponent},
+  {
+    path: "setNewReviewer/:oldUsername/:processId",
+    component: SetNewReviewerComponent
+  },
 
 
 

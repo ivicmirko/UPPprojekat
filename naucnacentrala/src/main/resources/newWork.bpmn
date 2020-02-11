@@ -316,7 +316,7 @@
       <bpmn:boundaryEvent id="BoundaryEvent_1q07l64" attachedToRef="ReviewingWork">
         <bpmn:outgoing>SequenceFlow_1rjhb6d</bpmn:outgoing>
         <bpmn:timerEventDefinition id="TimerEventDefinition_1xgplro">
-          <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT30S</bpmn:timeDuration>
+          <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT130S</bpmn:timeDuration>
         </bpmn:timerEventDefinition>
       </bpmn:boundaryEvent>
       <bpmn:sequenceFlow id="SequenceFlow_1rjhb6d" sourceRef="BoundaryEvent_1q07l64" targetRef="SendTask_10dshya" />
@@ -426,7 +426,7 @@
     <bpmn:sequenceFlow id="SequenceFlow_1d6odcg" sourceRef="ExclusiveGateway_1yzz9ro" targetRef="ExclusiveGateway_0tw1zac">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${decision == 4}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sendTask id="SendTask_1b4sf6k" name="Notify author that work is accepted and need small changes" camunda:class="com.project.naucnacentrala.newWorkHandlers.NotifyAboutChangesHandler">
+    <bpmn:sendTask id="SendTask_1b4sf6k" name="Notify author that work is accepted and need changes" camunda:class="com.project.naucnacentrala.newWorkHandlers.NotifyAboutChangesHandler">
       <bpmn:incoming>SequenceFlow_14a1wxf</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0z3vaim</bpmn:outgoing>
     </bpmn:sendTask>

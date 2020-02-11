@@ -40,20 +40,20 @@ public class NotifyDeniedTechnicalReasonsHandler implements JavaDelegate {
             System.out.println("Ne moze da nadje autora");
         }
 
-        try {
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(author.getEmail());
-            message.setSubject("Obavestenje o odbijanju rada!");
-
-
-            message.setText("Postovani/a "+author.getSurname() + " " + author.getName() + "\n\n" +
-                    "Vas rad "+work.getTitle()+" je odbijen iz tehnickih razloga\n "
-                    + "\n\n Vasa NaucnaCentrala");
-            javaMailSender.send(message);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            SimpleMailMessage message = new SimpleMailMessage();
+//            message.setTo(author.getEmail());
+//            message.setSubject("Obavestenje o odbijanju rada!");
+//
+//
+//            message.setText("Postovani/a "+author.getSurname() + " " + author.getName() + "\n\n" +
+//                    "Vas rad "+work.getTitle()+" je odbijen iz tehnickih razloga\n "
+//                    + "\n\n Vasa NaucnaCentrala");
+//            javaMailSender.send(message);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         work.setWorkStatus(WorkStatus.denied);
         workService.saveWork(work);
     }

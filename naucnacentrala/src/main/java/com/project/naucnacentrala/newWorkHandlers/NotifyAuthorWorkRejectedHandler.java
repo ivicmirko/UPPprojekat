@@ -29,19 +29,19 @@ public class NotifyAuthorWorkRejectedHandler implements JavaDelegate {
         work.setWorkStatus(WorkStatus.denied);
         Author author=work.getAuthor();
 
-        try {
-
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(author.getEmail());
-            message.setSubject("Notifikacija o radu");
-
-
-            message.setText("Postovani/a "+author.getSurname() + " " + author.getName() + "\nVas rad s naslovom "+work.getTitle()+" je odbijen!"+
-                    "\n\n Vasa NaucnaCentrala");
-            javaMailSender.send(message);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//
+//            SimpleMailMessage message = new SimpleMailMessage();
+//            message.setTo(author.getEmail());
+//            message.setSubject("Notifikacija o radu");
+//
+//
+//            message.setText("Postovani/a "+author.getSurname() + " " + author.getName() + "\nVas rad s naslovom "+work.getTitle()+" je odbijen!"+
+//                    "\n\n Vasa NaucnaCentrala");
+//            javaMailSender.send(message);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 }

@@ -34,19 +34,19 @@ public class NotifyAboutChangesHandler implements JavaDelegate {
         }else if(decision==3){
             changes="velike";
         }
-        try {
-
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(author.getEmail());
-            message.setSubject("Notifikacija o radu");
-
-
-            message.setText("Postovani/a "+author.getSurname() + " " + author.getName() + "\nVasem radu s naslovom "+work.getTitle()+" su potrebne "+changes+" izmene!"+
-                    "\n\n Vasa NaucnaCentrala");
-            javaMailSender.send(message);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+////
+////            SimpleMailMessage message = new SimpleMailMessage();
+////            message.setTo(author.getEmail());
+////            message.setSubject("Notifikacija o radu");
+////
+////
+////            message.setText("Postovani/a "+author.getSurname() + " " + author.getName() + "\nVasem radu s naslovom "+work.getTitle()+" su potrebne "+changes+" izmene!"+
+////                    "\n\n Vasa NaucnaCentrala");
+////            javaMailSender.send(message);
+////
+////        } catch (Exception e) {
+////            e.printStackTrace();
+////        }
     }
 }
